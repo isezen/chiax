@@ -1,0 +1,3 @@
+#! /bin/bash
+
+grep "Starting plotting\|F1 complete\|Total time\|Time for phase\|ID" $1 | ccze -A

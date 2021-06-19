@@ -1,0 +1,11 @@
+#! /bin/bash
+#
+# EXAMPLE:
+#
+# Create 10 serial plots with 4 thread
+# plot_ser.sh 10 4 /mnt/ssd2/chia_tmp /mnt/disk5/chia_plots ~/logs SSD
+
+log_prefix=${1:-""}
+log_dir=${2:-"$HOME/logs/plots"}
+
+grep -i "total time" $log_dir/$log_prefix*.log |awk '{sum=sum+$4} {avg=sum/NR} {tday=86400/avg*8*101.366/1024} END {printf "%d K32 plots, avg %0.1f seconds, %0.2f TiB/day \n", NR, avg, tday}'
